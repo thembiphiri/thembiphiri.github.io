@@ -47,7 +47,6 @@ hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
 });
 
-// Close menu when a link is clicked
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
     navLinksMenu.classList.remove('open');
@@ -55,7 +54,6 @@ navLinks.forEach(link => {
   });
 });
 
-// Close menu when clicking outside
 document.addEventListener('click', (e) => {
   if (!navbar.contains(e.target)) {
     navLinksMenu.classList.remove('open');
@@ -91,7 +89,7 @@ filterBtns.forEach(btn => {
 // SCROLL REVEAL ANIMATION
 // ========================================
 const revealElements = document.querySelectorAll(
-  '.skill-category, .project-card, .service-card, .education-card, .about-info-item'
+  '.skill-category, .project-card, .service-card, .education-card, .about-info-item, .cv-section, .cv-training-item, .cv-attribute'
 );
 
 const revealObserver = new IntersectionObserver(
@@ -130,12 +128,11 @@ contactForm.addEventListener('submit', (e) => {
   const mailtoLink = `mailto:thembi_phiri@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
 
   window.location.href = mailtoLink;
-
   contactForm.reset();
 });
 
 // ========================================
-// SMOOTH SCROLL FOR ALL ANCHOR LINKS
+// SMOOTH SCROLL
 // ========================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
@@ -148,55 +145,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ========================================
-// TYPING EFFECT FOR HERO TITLE
-// ========================================
-const titles = [
-  'Junior Software Developer',
-  'Full-Stack Developer',
-  'Python Developer',
-  'CS50 Harvard Graduate',
-  'Django Developer'
-];
-
-let titleIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-function typeEffect() {
-  const heroSubtitle = document.querySelector('.hero-subtitle');
-  if (!heroSubtitle) return;
-
-  const currentTitle = titles[titleIndex];
-
-  if (!isDeleting) {
-    charIndex++;
-  } else {
-    charIndex--;
-  }
-
-  if (charIndex === currentTitle.length) {
-    isDeleting = true;
-    setTimeout(typeEffect, 2000);
-    return;
-  }
-
-  if (charIndex === 0) {
-    isDeleting = false;
-    titleIndex = (titleIndex + 1) % titles.length;
-  }
-
-  setTimeout(typeEffect, isDeleting ? 60 : 100);
-}
-
-// ========================================
 // CURRENT YEAR IN FOOTER
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
   const yearElements = document.querySelectorAll('.footer-bottom p');
   yearElements.forEach(el => {
-    el.innerHTML = el.innerHTML.replace(
-      '2025',
-      new Date().getFullYear()
-    );
+    el.innerHTML = el.innerHTML.replace('2025', new Date().getFullYear());
   });
 });
