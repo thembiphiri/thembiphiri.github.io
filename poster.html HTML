@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thembi Phiri - Services Poster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .poster {
+      width: 600px;
+      background: linear-gradient(160deg, #0f172a 0%, #1a2744 50%, #0f172a 100%);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+      border: 1px solid #334155;
+    }
+
+    /* HEADER */
+    .poster-header {
+      background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #6366f1 100%);
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .poster-header::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%);
+    }
+
+    .harvard-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(196, 30, 58, 0.9);
+      color: white;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .poster-header h1 {
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: white;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .poster-header h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-tags {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-tag {
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* BODY */
+    .poster-body { padding: 1.8rem 2rem; }
+
+    .section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #3b82f6;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, #334155, transparent);
+    }
+
+    .poster-section { margin-bottom: 1.6rem; }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 0.8rem;
+      background: rgba(59, 130, 246, 0.06);
+      border: 1px solid rgba(59, 130, 246, 0.12);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .check {
+      color: #22c55e;
+      font-weight: 800;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    /* TECH TAGS */
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tech-tag {
+      background: rgba(59, 130, 246, 0.1);
+      color: #60a5fa;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    /* QUALIFICATIONS */
+    .qual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    .qual-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.75rem;
+      background: rgba(196, 30, 58, 0.06);
+      border: 1px solid rgba(196, 30, 58, 0.15);
+      border-radius: 8px;
+    }
+
+    .qual-icon {
+      color: #c41e3a;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .qual-text h4 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 0.1rem;
+    }
+
+    .qual-text p {
+      font-size: 0.68rem;
+      color: #64748b;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      padding: 0.5rem 0.6rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+    }
+
+    .contact-icon { font-size: 0.9rem; flex-shrink: 0; }
+    .contact-icon.blue { color: #3b82f6; }
+    .contact-icon.green { color: #25d366; }
+    .contact-icon.red { color: #f87171; }
+    .contact-icon.purple { color: #a78bfa; }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #334155, transparent);
+      margin: 1.2rem 0;
+    }
+
+    /* FOOTER */
+    .poster-footer {
+      background: rgba(59, 130, 246, 0.06);
+      border-top: 1px solid #334155;
+      padding: 1.2rem 2rem;
+      text-align: center;
+    }
+
+    .cta-text {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #22c55e;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-sub {
+      font-size: 0.78rem;
+      color: #64748b;
+    }
+
+    .footer-pills {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-pill {
+      background: rgba(59, 130, 246, 0.08);
+      color: #94a3b8;
+      padding: 0.25rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      border: 1px solid #334155;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster">
+
+    <!-- HEADER -->
+    <div class="poster-header">
+      <div class="harvard-badge">🎓 Harvard CS50 Graduate</div>
+      <h1>THEMBI PHIRI</h1>
+      <h2>Software Developer</h2>
+      <div class="header-tags">
+        <span class="header-tag">Python</span>
+        <span class="header-tag">Django</span>
+        <span class="header-tag">JavaScript</span>
+        <span class="header-tag">SQL</span>
+        <span class="header-tag">AI/ML</span>
+        <span class="header-tag">Full-Stack</span>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="poster-body">
+
+      <!-- SERVICES -->
+      <div class="poster-section">
+        <div class="section-title">💻 Services I Offer</div>
+        <div class="services-grid">
+          <div class="service-item"><span class="check">✓</span> Website Development</div>
+          <div class="service-item"><span class="check">✓</span> Full-Stack Web Apps</div>
+          <div class="service-item"><span class="check">✓</span> Small Business Websites</div>
+          <div class="service-item"><span class="check">✓</span> Portfolio Websites</div>
+          <div class="service-item"><span class="check">✓</span> Python Development</div>
+          <div class="service-item"><span class="check">✓</span> Database Design & SQL</div>
+          <div class="service-item"><span class="check">✓</span> Landing Pages</div>
+          <div class="service-item"><span class="check">✓</span> GitHub Deployment</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- QUALIFICATIONS -->
+      <div class="poster-section">
+        <div class="section-title">🎓 Qualifications</div>
+        <div class="qual-grid">
+          <div class="qual-item">
+            <span class="qual-icon">🏛️</span>
+            <div class="qual-text">
+              <h4>CS50x — Computer Science</h4>
+              <p>Harvard University</p>
+            </div>
+          </div>
+          <div class="qual-item">
+            <span class="qual-icon">🤖</span>
+            <div class="qual-text">
+              <h4>CS50 AI — Artificial Intelligence</h4>
+              <p>Harvard University</p>
+            </div>
+          </div>
+          <div class="qual-item">
+            <span class="qual-icon">🐍</span>
+            <div class="qual-text">
+              <h4>CS50 Python — Programming</h4>
+              <p>Harvard University</p>
+            </div>
+          </div>
+          <div class="qual-item">
+            <span class="qual-icon">🌐</span>
+            <div class="qual-text">
+              <h4>CS50 Web — Web Development</h4>
+              <p>Harvard University</p>
+            </div>
+          </div>
+          <div class="qual-item">
+            <span class="qual-icon">🗄️</span>
+            <div class="qual-text">
+              <h4>CS50 SQL — Databases</h4>
+              <p>Harvard University</p>
+            </div>
+          </div>
+          <div class="qual-item">
+            <span class="qual-icon">🏫</span>
+            <div class="qual-text">
+              <h4>Software Development</h4>
+              <p>UniCollege Krugersdorp</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- TECHNOLOGIES -->
+      <div class="poster-section">
+        <div class="section-title">⚡ Technologies</div>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Django</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">HTML5</span>
+          <span class="tech-tag">CSS3</span>
+          <span class="tech-tag">SQL</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">Git</span>
+          <span class="tech-tag">AI / ML</span>
+          <span class="tech-tag">REST APIs</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- CONTACT -->
+      <div class="poster-section">
+        <div class="section-title">📬 Contact Me</div>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span class="contact-icon blue">📧</span>
+            thembi_phiri@icloud.com
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon green">💬</span>
+            081 872 6322 (WhatsApp)
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon purple">🌐</span>
+            thembiphiri.github.io
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon red">📍</span>
+            Magaliesburg, South Africa
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="poster-footer">
+      <div class="cta-text">✅ Available for Freelance Work</div>
+      <p class="footer-sub">Remote & Local Projects Welcome</p>
+      <div class="footer-pills">
+        <span class="footer-pill">Affordable</span>
+        <span class="footer-pill">Professional</span>
+        <span class="footer-pill">Reliable</span>
+        <span class="footer-pill">South Africa</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
