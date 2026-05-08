@@ -75,7 +75,10 @@ filterBtns.forEach(btn => {
     const filter = btn.getAttribute('data-filter');
 
     projectCards.forEach(card => {
-      if (filter === 'all' || card.getAttribute('data-category') === filter) {
+      if (
+        filter === 'all' ||
+        card.getAttribute('data-category') === filter
+      ) {
         card.style.display = 'flex';
         card.style.animation = 'fadeInUp 0.4s ease';
       } else {
@@ -113,22 +116,62 @@ revealElements.forEach(el => {
 });
 
 // ========================================
-// CONTACT FORM
+// CONTACT FORM WITH FORMSPREE
 // ========================================
 const contactForm = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const formSuccess = document.getElementById('form-success');
+const formError = document.getElementById('form-error');
 
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const subject = document.getElementById('subject').value;
-  const message = document.getElementById('message').value;
+  submitBtn.innerHTML =
+    '<i class="fas fa-spinner fa-spin"></i> Sending...';
+  submitBtn.disabled = true;
 
-  const mailtoLink = `mailto:thembi_phiri@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+  formSuccess.style.display = 'none';
+  formError.style.display = 'none';
 
-  window.location.href = mailtoLink;
-  contactForm.reset();
+  const formData = new FormData(contactForm);
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      formSuccess.style.display = 'flex';
+      contactForm.reset();
+      submitBtn.innerHTML =
+        '<i class="fas fa-check"></i> Message Sent!';
+      submitBtn.style.background = '#22c55e';
+
+      setTimeout(() => {
+        submitBtn.innerHTML =
+          '<i class="fas fa-paper-plane"></i> Send Message';
+        submitBtn.disabled = false;
+        submitBtn.style.background = '';
+        formSuccess.style.display = 'none';
+      }, 6000);
+
+    } else {
+      formError.style.display = 'flex';
+      submitBtn.innerHTML =
+        '<i class="fas fa-paper-plane"></i> Send Message';
+      submitBtn.disabled = false;
+    }
+
+  } catch (error) {
+    formError.style.display = 'flex';
+    submitBtn.innerHTML =
+      '<i class="fas fa-paper-plane"></i> Send Message';
+    submitBtn.disabled = false;
+  }
 });
 
 // ========================================
@@ -150,6 +193,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 document.addEventListener('DOMContentLoaded', () => {
   const yearElements = document.querySelectorAll('.footer-bottom p');
   yearElements.forEach(el => {
-    el.innerHTML = el.innerHTML.replace('2025', new Date().getFullYear());
+    el.innerHTML = el.innerHTML.replace(
+      '2025',
+      new Date().getFullYear()
+    );
   });
 });
